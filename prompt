@@ -1,0 +1,127 @@
+Use the frontend-design skill to redesign the existing Kairos client detail workspace and implement an interactive financial timeline.
+
+Kairos is an internal Scotiabank wealth advisor intelligence prototype. All current client, portfolio, and goal data is synthetic.
+
+**IMPORTANT: Preserve the existing homepage-to-client shared-layout animation, left client rail, navigation, and full opportunity functionality. Do not rebuild unrelated screens.**
+
+## 1. Current interface
+
+Inspect the existing client detail page before making any changes.
+
+The current layout has:
+- A persistent client list on the left.
+- A central portfolio analysis area with a segmented cash chart.
+- A right panel containing "What happened," "Why it matters," and "Next best action."
+- An existing Full Opportunity action.
+
+The current visualization is underwhelming, and the right panel is overly text-heavy.
+
+## 2. Redesign the central portfolio analysis
+
+Replace the existing blocky chart with an elegant, premium financial visualization.
+
+For the synthetic Owen Patel record, the data includes:
+- Total portfolio: $400K
+- Invested holdings: $240K (60%)
+- Total cash: $160K (40%)
+- Earmarked cash: $20K (5%)
+- Uninvested cash: $140K (35%)
+- Historical total cash level: 6%
+- Deposit on September 18, 2026: $145K
+
+Use a sophisticated, clearly labeled portfolio composition chart with excellent typography, restrained colors, contextual comparisons, and tasteful micro-interactions.
+
+Avoid unnecessary graphs and decorative UI.
+
+Move the existing Next Best Action section beneath the visualization. Make it concise, readable, and visually integrated into the center workspace.
+
+Do not change the underlying calculations or invent unsupported investment conclusions.
+
+## 3. Replace the right panel with a vertical financial timeline
+
+Remove the existing "What happened" and "Why it matters" sections.
+
+Create a vertical Client Timeline showing important financial events, client goals, and advisor review checkpoints.
+
+Each milestone should communicate:
+- Date or target date
+- Milestone title
+- Type: financial event, client goal, or advisor checkpoint
+- Status
+- Short contextual description
+
+Use Owen's existing deposit, current cash review, and December 2033 retirement date as the initial grounded milestones.
+
+Additional synthetic milestones may be added for demonstration, but they must be clearly identified as fictional planning examples.
+
+Design the timeline with elegant node markers, connecting lines, intentional typography, restrained color coding, and excellent spacing.
+
+Do not make it look like a generic activity log or a stack of notification cards.
+
+## 4. Build an expanded horizontal timeline workspace
+
+Clicking "Explore Timeline" should transform the compact vertical timeline into a beautiful full-workspace horizontal financial planning canvas.
+
+This should be a coordinated transition, not an abrupt page change or a generic drawer.
+
+The expanded view should include:
+- A full-width horizontal time axis with date-proportional milestone placement.
+- Attractive milestone cards that can appear above and below the axis.
+- Clear visual differentiation between past events, future goals, and advisor checkpoints.
+- Zoom controls for near-term, multi-year, and long-term views.
+- A selected-milestone inspector containing relevant information.
+- Ability to add, edit, and review fictional client goals and milestones.
+- Local mock persistence for demo edits where appropriate.
+- A clear way to return to the compact client workspace.
+
+Milestones without confirmed dates should be shown separately as unscheduled instead of being assigned arbitrary dates.
+
+Keep the timeline readable when many milestones exist, with appropriate clustering or grouping.
+
+The expanded timeline should feel like a sophisticated financial planning tool, not a basic horizontal carousel.
+
+## 5. Animation requirements
+
+Use the existing animation system when possible. Prefer Motion for React if it is already used by the app.
+
+Consider LayoutGroup, layout, layoutId and AnimatePresence for coordinated shared-layout transitions.
+
+- The vertical panel should expand naturally into the larger workspace.
+- Shared milestone elements should transition into the horizontal view.
+- The active milestone should remain selected during expansion and collapse.
+- Returning should reverse the transition cleanly.
+- Motion should be smooth, restrained, and interruptible.
+- Avoid random zooms, exaggerated bouncing, heavy blur, and unnecessary animation.
+- Respect reduced-motion preferences.
+
+## 6. Design quality
+
+The target aesthetic is premium enterprise fintech with the interaction polish of a modern desktop application.
+
+Use refined typography, excellent spacing, subtle borders, thoughtful neutral surfaces, and restrained Scotiabank-inspired red accents.
+
+Do not produce the generic AI-generated dashboard look.
+
+The most important elements are information hierarchy, clarity, visual polish, and fluid interaction.
+
+## 7. Implementation process
+
+First inspect the existing relevant components and explain the design and animation architecture you recommend.
+
+Then implement the feature within the existing React app.
+
+Preserve current functionality, client switching, back navigation, and existing routes.
+
+Verify the following:
+- Compact client timeline displays correctly.
+- Portfolio figures reconcile to the underlying synthetic data.
+- Timeline expands and collapses smoothly.
+- Clicking milestones updates the detail inspector.
+- Adding or editing a synthetic milestone updates the timeline.
+- Switching clients displays the correct client-specific milestones.
+- Existing navigation and full opportunity actions still work.
+- No flickering, stale state, duplicate elements, or broken animations.
+
+Run available build and lint checks and fix any failures.
+
+Focus on creating a polished, fully usable feature rather than simply decorating the existing screen.
