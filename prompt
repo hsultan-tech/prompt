@@ -1,127 +1,86 @@
-Use the frontend-design skill to redesign the existing Kairos client detail workspace and implement an interactive financial timeline.
+Use the frontend-design skill to substantially improve the UX and visual design of Kairos's expanded financial timeline and the Open Opportunity action placement.
 
-Kairos is an internal Scotiabank wealth advisor intelligence prototype. All current client, portfolio, and goal data is synthetic.
+The current implementation is functional, but the expanded timeline is difficult to understand and visually overwhelming. I want a major improvement in clarity, composition, and polish, not superficial CSS changes.
 
-**IMPORTANT: Preserve the existing homepage-to-client shared-layout animation, left client rail, navigation, and full opportunity functionality. Do not rebuild unrelated screens.**
+### 1. Fix the expanded timeline
 
-## 1. Current interface
+Inspect the existing implementation and preserve its working functionality.
 
-Inspect the existing client detail page before making any changes.
+Problems to solve:
+- The expanded timeline is squeezed between the large client sidebar and the event inspector.
+- Events appear scattered above and below the horizontal axis with unclear relationships.
+- It is difficult to distinguish historical financial events, client goals, and advisor checkpoints.
+- The date axis is hard to follow, and the Today marker is confusing.
+- The "3 later" indicator hides important future milestones without explaining how to access them.
+- The overall composition feels cramped, technical, and unintuitive.
 
-The current layout has:
-- A persistent client list on the left.
-- A central portfolio analysis area with a segmented cash chart.
-- A right panel containing "What happened," "Why it matters," and "Next best action."
-- An existing Full Opportunity action.
+Redesign it as a beautiful, immersive Financial Journey workspace.
 
-The current visualization is underwhelming, and the right panel is overly text-heavy.
+Requirements:
+- When entering the expanded timeline, smoothly collapse the client sidebar to maximize available space. Keep the main application navigation.
+- Create one clear horizontal chronological axis with correctly positioned dates.
+- Make the Today marker prominent and accurate.
+- Clearly distinguish past events, future client goals, and advisor reviews through deliberate visual hierarchy.
+- Use restrained milestone cards with readable titles, dates, and meaningful statuses.
+- Avoid overlapping events, cluttered cards, excessive gridlines, and tiny text.
+- Support Near Term, Multi-Year, and Long Term views with appropriate date scaling.
+- Make all milestones discoverable and provide intuitive navigation to events outside the visible date range.
+- Display a compact contextual inspector when a milestone is selected.
+- Preserve milestone creation and editing functionality.
+- Ensure timeline dates and relative time labels are calculated consistently.
+- Restore the client sidebar when returning to the normal workspace.
 
-## 2. Redesign the central portfolio analysis
+The timeline should be understandable within five seconds. An advisor should immediately see what has happened, what matters today, and which goals are approaching.
 
-Replace the existing blocky chart with an elegant, premium financial visualization.
+### 2. Fix the Open Full Opportunity button
 
-For the synthetic Owen Patel record, the data includes:
-- Total portfolio: $400K
-- Invested holdings: $240K (60%)
-- Total cash: $160K (40%)
-- Earmarked cash: $20K (5%)
-- Uninvested cash: $140K (35%)
-- Historical total cash level: 6%
-- Deposit on September 18, 2026: $145K
+The current button is awkwardly floating near the bottom-right of the portfolio visualization.
 
-Use a sophisticated, clearly labeled portfolio composition chart with excellent typography, restrained colors, contextual comparisons, and tasteful micro-interactions.
+Move it into a dedicated Next Best Action section directly beneath the portfolio chart.
 
-Avoid unnecessary graphs and decorative UI.
+Design this as one cohesive area:
+- Small, refined icon.
+- Clear Next Best Action heading.
+- Concise recommendation or investigation guidance.
+- A well-positioned primary button labeled "Review Opportunity."
+- The button should be visually connected to the action and aligned consistently.
 
-Move the existing Next Best Action section beneath the visualization. Make it concise, readable, and visually integrated into the center workspace.
+Preserve the existing opportunity navigation and underlying functionality.
 
-Do not change the underlying calculations or invent unsupported investment conclusions.
+### 3. Polish the portfolio visualization
 
-## 3. Replace the right panel with a vertical financial timeline
+Keep the existing portfolio composition concept, but improve:
+- Typography and number hierarchy.
+- Chart contrast and segment clarity.
+- Labels, legend, and alignment.
+- Spacing between portfolio metrics and the chart.
+- Overall visual balance with the timeline panel.
 
-Remove the existing "What happened" and "Why it matters" sections.
+Do not introduce unnecessary charts or decorative elements.
 
-Create a vertical Client Timeline showing important financial events, client goals, and advisor review checkpoints.
+### 4. Animation and existing architecture
 
-Each milestone should communicate:
-- Date or target date
-- Milestone title
-- Type: financial event, client goal, or advisor checkpoint
-- Status
-- Short contextual description
+Preserve all existing homepage-to-client animations, client selection behavior, timeline expand/collapse functionality, and existing routes.
 
-Use Owen's existing deposit, current cash review, and December 2033 retirement date as the initial grounded milestones.
+Use the current animation architecture. Avoid full page reloads, visual jumps, flickering, and excessive motion.
 
-Additional synthetic milestones may be added for demonstration, but they must be clearly identified as fictional planning examples.
+### 5. Implementation
 
-Design the timeline with elegant node markers, connecting lines, intentional typography, restrained color coding, and excellent spacing.
+First inspect the current components and explain your redesign plan briefly.
 
-Do not make it look like a generic activity log or a stack of notification cards.
+Then implement the changes in the existing application.
 
-## 4. Build an expanded horizontal timeline workspace
+Test:
+- Client workspace layout.
+- Full timeline expand and collapse.
+- Near-term and long-term navigation.
+- Milestone selection and editing.
+- Correct date placement and labels.
+- Open Opportunity navigation.
+- Existing shared-layout animations.
 
-Clicking "Explore Timeline" should transform the compact vertical timeline into a beautiful full-workspace horizontal financial planning canvas.
+Run the available build and lint checks.
 
-This should be a coordinated transition, not an abrupt page change or a generic drawer.
+The result should feel like a premium, thoughtfully designed financial planning application, not a generic project-management timeline or an overloaded analytics dashboard.
 
-The expanded view should include:
-- A full-width horizontal time axis with date-proportional milestone placement.
-- Attractive milestone cards that can appear above and below the axis.
-- Clear visual differentiation between past events, future goals, and advisor checkpoints.
-- Zoom controls for near-term, multi-year, and long-term views.
-- A selected-milestone inspector containing relevant information.
-- Ability to add, edit, and review fictional client goals and milestones.
-- Local mock persistence for demo edits where appropriate.
-- A clear way to return to the compact client workspace.
-
-Milestones without confirmed dates should be shown separately as unscheduled instead of being assigned arbitrary dates.
-
-Keep the timeline readable when many milestones exist, with appropriate clustering or grouping.
-
-The expanded timeline should feel like a sophisticated financial planning tool, not a basic horizontal carousel.
-
-## 5. Animation requirements
-
-Use the existing animation system when possible. Prefer Motion for React if it is already used by the app.
-
-Consider LayoutGroup, layout, layoutId and AnimatePresence for coordinated shared-layout transitions.
-
-- The vertical panel should expand naturally into the larger workspace.
-- Shared milestone elements should transition into the horizontal view.
-- The active milestone should remain selected during expansion and collapse.
-- Returning should reverse the transition cleanly.
-- Motion should be smooth, restrained, and interruptible.
-- Avoid random zooms, exaggerated bouncing, heavy blur, and unnecessary animation.
-- Respect reduced-motion preferences.
-
-## 6. Design quality
-
-The target aesthetic is premium enterprise fintech with the interaction polish of a modern desktop application.
-
-Use refined typography, excellent spacing, subtle borders, thoughtful neutral surfaces, and restrained Scotiabank-inspired red accents.
-
-Do not produce the generic AI-generated dashboard look.
-
-The most important elements are information hierarchy, clarity, visual polish, and fluid interaction.
-
-## 7. Implementation process
-
-First inspect the existing relevant components and explain the design and animation architecture you recommend.
-
-Then implement the feature within the existing React app.
-
-Preserve current functionality, client switching, back navigation, and existing routes.
-
-Verify the following:
-- Compact client timeline displays correctly.
-- Portfolio figures reconcile to the underlying synthetic data.
-- Timeline expands and collapses smoothly.
-- Clicking milestones updates the detail inspector.
-- Adding or editing a synthetic milestone updates the timeline.
-- Switching clients displays the correct client-specific milestones.
-- Existing navigation and full opportunity actions still work.
-- No flickering, stale state, duplicate elements, or broken animations.
-
-Run available build and lint checks and fix any failures.
-
-Focus on creating a polished, fully usable feature rather than simply decorating the existing screen.
+Prioritize exceptional usability and visual clarity over adding more features.
