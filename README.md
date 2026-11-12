@@ -1,1 +1,230 @@
-# prompt
+Use the frontend-design skill to build a genuinely exceptional, cinematic financial goal-planning experience inside the existing Kairos React application.
+
+**This is an implementation task, not a brainstorming exercise. Inspect the codebase, explain your approach briefly, then write the code and get the experience working.**
+
+## THE VISION
+
+Kairos is a Scotiabank advisor intelligence platform using synthetic financial data.
+
+The current Financial Journey is a cluttered horizontal timeline with scattered milestone cards and poor visual hierarchy. I want to completely replace the expanded timeline experience.
+
+Imagine Apple-level product storytelling combined with an interactive 3D experience and an intelligent financial planning application.
+
+An advisor selects a client's goal, such as purchasing a car in two years. A beautifully rendered 3D car becomes the centerpiece while Kairos explains whether the client can afford the goal and what financial adjustments or Scotia products may help.
+
+The experience must immediately communicate both visual excellence and business value.
+
+## 1. THE CINEMATIC HERO
+
+Build a full-workspace Goal Journey experience.
+
+For the primary demo, show a client saving for a car.
+
+Design the screen with:
+
+- A sophisticated dark graphite/navy environment.
+- A real 3D car model positioned prominently in the hero area.
+- Cinematic lighting, realistic materials, soft shadows and atmospheric depth.
+- Large editorial typography identifying the selected goal.
+- Target date, goal amount, projected savings and expected shortfall.
+- A beautiful, restrained status indicator: On Track, At Risk or Off Track.
+- Minimal navigation chrome and generous breathing room.
+
+The car should have subtle idle motion and gentle pointer-driven rotation, with bounded camera controls.
+
+Do NOT use fake 3D created from flat images, oversized emojis or crude CSS shapes.
+
+Use an existing locally available GLB model if suitable. Otherwise, look for a properly licensed, visually attractive asset that can be bundled locally. Khronos glTF Sample Assets is an acceptable starting point.
+
+Use React Three Fiber, Drei and Three.js if compatible with the existing stack. Avoid unnecessary dependency changes.
+
+If an appropriate 3D model is unavailable, build and test the complete scene with a clearly identified temporary asset. Do not spend the entire implementation on asset sourcing.
+
+## 2. REIMAGINE THE TIMELINE
+
+Remove the current three-lane Gantt-style timeline.
+
+Replace it with an elegant, minimal horizontal Goal Journey navigation near the bottom of the hero.
+
+Show 3–5 meaningful client goals, such as:
+- Vehicle purchase: 2028
+- Home down payment: 2031
+- Education funding: 2034
+- Retirement: 2045
+
+Use coherent fictional data.
+
+Each goal should have a clean marker, date and short label. Show the selected goal prominently.
+
+Selecting a different milestone should smoothly change the selected goal and its financial information.
+
+Hovering or focusing a goal may preview its visual representation, but clicking must explicitly select it.
+
+Do not use scattered cards, busy gridlines, dozens of event bubbles or decorative timeline tracks.
+
+If the navigation represents chronological time, place dates consistently. Do not imply equally spaced intervals are proportional when they are not.
+
+## 3. MAKE THE FINANCIAL INTELLIGENCE REAL
+
+Build a lightweight, deterministic calculation engine using synthetic financial data.
+
+For the car goal, use an internally consistent example:
+- Target: $40,000
+- Time horizon: 24 months
+- Current savings: $20,000
+- Monthly contribution: $600
+- Illustrative annual return assumption: 2.5%
+- Client risk profile: Conservative
+
+Calculate:
+- Projected future savings
+- Shortfall or surplus
+- Required monthly contribution to achieve the target
+- Difference between current and required contributions
+- Goal status based on defined, explainable thresholds
+
+Use correct monthly compounding and contribution assumptions.
+
+All displayed values must derive from one calculation engine. No arbitrary hardcoded AI numbers.
+
+Do not display invented success probabilities or guarantee investment returns.
+
+Make all projections clearly illustrative.
+
+## 4. INTERACTIVE GOAL STRATEGY
+
+Include one prominent action: "Explore Your Path".
+
+Clicking it should smoothly reveal a planning panel without destroying the hero experience.
+
+The panel should contain:
+
+A. Current trajectory
+- Elegant projected savings visualization
+- Target amount clearly visible
+- Projected shortfall
+- Brief explanation of the primary constraint
+
+B. Interactive scenario adjustments
+- Monthly contribution control
+- Goal amount control
+- Target date control
+- Clearly labeled return assumption where appropriate
+
+As values change, recalculate the entire financial projection immediately.
+
+C. Alternative paths
+- Maintain current plan
+- Increase monthly contributions
+- Explore suitable low-risk savings or investment options
+- Adjust target date or budget
+
+Show how each path changes the projected outcome.
+
+This must be genuinely interactive, not static demo text.
+
+## 5. SCOTIABANK PRODUCT INTELLIGENCE
+
+Include a refined "Options for Advisor Review" section in the planning panel.
+
+For this conservative, two-year goal, consider short-term savings and GIC categories where appropriate.
+
+Use verified product information from approved sources when available. Otherwise, clearly label options as illustrative and never invent official product names, rates or eligibility rules.
+
+Each option must explain:
+- Why it may relate to this particular goal
+- How its term and liquidity characteristics compare with the goal
+- Important costs, restrictions or trade-offs
+- What client information must be confirmed
+- How its illustrative return assumptions affect the projection
+
+Products are candidates for advisor assessment, NOT automated suitability determinations.
+
+Do not recommend aggressive equity exposure simply to close a short-term savings gap.
+
+No autonomous transactions, emails, calls or account changes.
+
+## 6. ANIMATION AND INTERACTION QUALITY
+
+The visual reference demonstrates premium interactive 3D presentation. Reproduce that sense of quality, not its literal layout.
+
+Use existing Motion for React infrastructure where possible.
+
+Requirements:
+- Beautiful entrance into Goal Journey from the client workspace.
+- Smooth and reversible goal selection transitions.
+- Subtle 3D scene motion, without constant spinning.
+- Refined reveal of financial analysis.
+- Smooth transitions when modifying scenarios.
+- No abrupt page reloads or disappearing UI.
+- No excessive glow, bouncy effects, random zooming or dramatic camera shakes.
+- Keep goal text readable while 3D content moves.
+- Support reduced-motion preferences.
+- Keep the page responsive and performant.
+
+Aim for a coherent, fluid product experience instead of many disconnected animations.
+
+## 7. ARCHITECTURE AND EXISTING FUNCTIONALITY
+
+Inspect the current codebase before editing.
+
+Preserve:
+- Existing dashboard and client cards
+- Homepage-to-client shared-layout animation
+- Client selection and navigation
+- Existing opportunity detail routes
+- Compact vertical client timeline for now
+
+Replace only the expanded Financial Journey interface and the related synthetic data/planning logic as needed.
+
+Create reusable components for the 3D goal hero, goal navigation, financial calculations, scenario controls and product comparison.
+
+The primary car goal must work exceptionally well. Other goals can use polished fallback visuals if complete 3D scenes are not available.
+
+Do not build a backend. Do not implement external banking integrations.
+
+## 8. DESIGN QUALITY BAR
+
+This must not look like:
+- A generic SaaS analytics dashboard
+- A Gantt chart
+- A collection of rounded cards
+- A gaming website unrelated to wealth management
+- A 3D model slapped onto an otherwise ordinary UI
+
+It should feel like a carefully art-directed institutional product with the presentation quality of an award-winning interactive website.
+
+Use strong typography, beautiful proportions, precise alignment, sophisticated lighting, restraint and exceptional visual hierarchy.
+
+At 1440×900, the opening experience should look finished and impressive without scrolling.
+
+The advisor must immediately understand:
+1. What the client wants.
+2. When they want it.
+3. Whether they are on track.
+4. What Kairos can help them evaluate.
+
+## 9. EXECUTION AND VERIFICATION
+
+Make a brief implementation plan, then begin coding immediately.
+
+Prioritize in this order:
+
+1. Working hero with an actual 3D car and beautiful composition.
+2. Accurate financial goal calculations and status.
+3. Functional goal navigation.
+4. Interactive planning panel and scenarios.
+5. Advisor-facing product comparisons.
+6. Final motion and visual polish.
+
+Implement a complete vertical slice rather than several unfinished features.
+
+Run the application, build and lint checks.
+
+If browser screenshot tooling is available, inspect the result at 1440×900 and refine it.
+
+Verify the 3D asset loads, all controls work, values recalculate, dates are consistent, and navigation back to the existing workspace is intact.
+
+Do not claim something is implemented unless it works.
+
+**The end result should make a senior Scotiabank leader understand the value of Kairos within the first 15 seconds, then demonstrate actual advisor usefulness through an interactive financial scenario.**
