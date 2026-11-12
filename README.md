@@ -1,108 +1,160 @@
-STOP adding features. The current Financial Goal Journey implementation is visually unacceptable.
+Use the frontend-design skill. I need you to rescue the visual design of the existing Kairos Goal Journey.
 
-Look at the rendered screenshot and critically evaluate what you produced.
+**Your previous implementation is not visually acceptable. This task is not complete when the code builds. It is complete when the rendered application looks polished and works correctly.**
 
-The intended experience was a cinematic, award-quality 3D financial goal presentation. Instead, the page is a nearly empty dark rectangle with cramped financial text, an almost invisible car, and a basic row of timeline dots.
+## FIRST: INSPECT THE ACTUAL APPLICATION
 
-This is not remotely close to the supplied visual references.
+Before modifying code:
 
-**YOUR ONLY TASK RIGHT NOW IS TO COMPLETELY FIX THE HERO EXPERIENCE.**
+1. Find the existing Goal Journey route and its React components.
+2. Start the development server using the project's existing scripts.
+3. Use available VS Code browser tools, Playwright, or an existing browser automation integration to open the page at 1440×900.
+4. Capture a screenshot and save it to `design-review/before.png`.
+5. Visually inspect the rendered result if your tools support image inspection.
+6. Inspect browser console messages and Three.js loading errors.
 
-### 1. Diagnose the invisible 3D model
+If browser tooling is unavailable, clearly report that limitation and use the source code and runtime diagnostics. Do not claim to have visually inspected a screenshot you cannot see.
 
-The 3D car is practically invisible.
+## THE SPECIFIC PROBLEM
 
-Inspect the actual React Three Fiber scene, GLB asset, camera, lighting, materials, canvas sizing, and CSS stacking.
+The existing screen looks like an unfinished dark dashboard.
 
-Determine whether:
-- The model is loading correctly.
-- The camera is pointing at the model and framing its complete bounds.
-- The model scale and position are correct.
-- Materials are receiving sufficient lighting.
-- CSS overlays or parent opacity are hiding the canvas.
-- The scene is clipped or rendered behind another element.
+The car is practically invisible. The text is crowded to the left, the right side is mostly empty, the background looks muddy, and the timeline is an unimpressive row of dots.
 
-Fix the root cause rather than blindly increasing brightness or adding CSS effects.
+We need a deliberate design rebuild of the HERO, not another round of minor CSS changes.
 
-The car must be clearly recognizable, rendered at a substantial size, and beautifully illuminated.
+## VISUAL TARGET
 
-### 2. Completely rethink the hero composition
+Create a premium cinematic automotive presentation integrated into a financial planning interface.
 
-Use a sophisticated two-column editorial composition.
+Target viewport: 1440×900.
 
-LEFT: approximately 35–40% of the hero.
-- Beautiful large serif or editorial headline.
-- Client and goal context.
-- Target amount and date.
-- Projected outcome and shortfall.
-- One obvious primary action.
+Composition:
 
-RIGHT: approximately 60–65% of the hero.
-- A large, high-quality 3D car.
-- Three-quarter perspective.
-- Cinematic studio lighting.
-- Soft shadows and subtle atmospheric depth.
-- Clean graphite environment.
-- No overlapping text.
-- No meaningless empty space.
+LEFT 35–40%:
+- Client and goal identification.
+- A striking editorial headline.
+- Target amount and target date.
+- Current savings and projected result.
+- A prominent shortfall or surplus figure.
+- One primary action: "Explore the Plan".
 
-The car must be the dominant visual element.
+RIGHT 60–65%:
+- A large, clearly visible REAL 3D car.
+- Recognizable silhouette and premium materials.
+- Three-quarter camera angle.
+- High-quality studio lighting.
+- Soft environmental shadows.
+- Minimal atmospheric effects.
+- No text overlapping the vehicle.
 
-Do not use a flat image as a substitute for the 3D model.
+The vehicle should occupy approximately 65–80% of its available 3D canvas width and remain completely within the frame.
 
-### 3. Improve the entire visual direction
+The 3D object must be instantly recognizable at normal viewing size.
 
-The current dark textured background looks muddy and cheap.
+Use a refined charcoal or dark graphite background, not a featureless black rectangle.
 
-Replace it with a deliberate, restrained, premium studio environment.
+Typography should be expressive and confident. Use contrast, scale, and spacing to create hierarchy.
 
-Take inspiration from sophisticated automotive product experiences and award-winning interactive websites.
+Scotiabank red should be a restrained accent, not a substitute for good composition.
 
-Use:
-- Exceptional typography.
-- Carefully balanced negative space.
-- Strong contrast and legibility.
-- Subtle Scotiabank red as a restrained accent.
-- Beautiful studio lighting.
-- Intentional animation.
+## DEBUG THE 3D CAR PROPERLY
 
-Avoid generic dashboards, excessive gradients, decorative floating particles, stock UI cards, and random glow effects.
+Before styling around the model, verify:
 
-### 4. Preserve the functional work
+- GLB asset loads without errors.
+- Canvas has correct dimensions.
+- Camera position, lookAt target, near/far planes and field of view are correct.
+- Model bounding box, scale and center are calculated.
+- Camera framing accounts for the model's actual size.
+- Materials are rendering correctly.
+- Ambient, directional and environment lighting are sufficient.
+- CSS stacking, opacity and clipping aren't hiding the model.
 
-Keep the existing:
-- Financial projection calculations.
-- Goal selection functionality.
-- Scenario planning functionality.
-- Client navigation.
-- Existing routes.
+Temporarily use a bright neutral debugging environment to establish correct visibility.
 
-Do not build more goals or product recommendations during this iteration.
+Then reintroduce cinematic lighting.
 
-### 5. Fix date accuracy
+Do not attempt to fix an invisible model using arbitrary CSS brightness, giant scaling values, or random camera adjustments.
 
-The screenshot says October 2028 is 24 months away from November 2026.
+If the asset itself is unsuitable, report that explicitly and use a better licensed asset rather than disguising the problem.
 
-Use one consistent demo as-of date. Make the goal horizon and projection calculations agree with that date.
+## FINANCIAL PRESENTATION
 
-### 6. Verify visually, not just technically
+The financial information must remain extremely clear.
 
-Run the app and inspect the ACTUAL rendered result at 1440×900.
+Show:
+- Goal amount: $40,000.
+- Current savings: $20,000.
+- Monthly contribution: $600.
+- Target horizon: 24 months.
+- Projected savings derived from the existing calculation engine.
+- Shortfall or surplus.
+- Status: On Track or At Risk.
 
-Do not consider the task complete simply because the build succeeds.
+Use one consistent simulated as-of date for the 24-month horizon.
 
-Verify:
-- The complete car is clearly visible.
-- The car occupies a meaningful portion of the right side.
-- The lighting and materials look premium.
-- Financial numbers are immediately readable.
-- The composition feels balanced.
-- No element is clipped or overlapping.
+All figures must reconcile with the existing calculation engine. Do not fabricate numbers.
 
-Capture a screenshot if browser tooling is available. If not, explicitly tell me visual verification was not possible.
+Do not add speculative AI success probabilities.
 
-Compare the implementation against the references and fix the obvious weaknesses.
+## TIMELINE DESIGN
 
-Do not add any more features until this first screen looks genuinely excellent.
+For now, keep the goal navigation simple.
 
-I want a beautifully designed interactive 3D product experience, NOT a conventional financial dashboard with a 3D model hidden somewhere in the background.
+Use a refined horizontal goal selector anchored below the main composition.
+
+It should visually support the hero, not compete with it.
+
+Display readable labels and meaningful dates.
+
+Do not build a new timeline system or additional goals during this pass.
+
+## MOTION
+
+Keep interactions deliberate and restrained.
+
+- Subtle idle movement of the 3D car.
+- Gentle pointer-driven rotation.
+- Smooth text transitions.
+- Refined entrance choreography.
+- No aggressive camera movements, excessive zooming or bouncing.
+
+Support reduced-motion preferences.
+
+## NON-NEGOTIABLE CONSTRAINTS
+
+Do not modify the existing homepage, client rail, opportunity pages, financial calculation engine, or unrelated components.
+
+Preserve routing and navigation.
+
+Do not implement new product recommendation features.
+
+Do not add unnecessary dependencies.
+
+## REQUIRED VISUAL VERIFICATION
+
+After implementing:
+
+1. Open the actual Goal Journey.
+2. Capture `design-review/after.png` at 1440×900.
+3. Verify that the car is visible and correctly framed.
+4. Inspect the hero for clipping, excessive empty space, alignment issues and unreadable text.
+5. Correct the largest visible problems.
+6. Capture a final screenshot after corrections.
+7. Run build and lint checks.
+
+If visual inspection tools are available, complete at least two screenshot-based refinement passes.
+
+Your final response must identify:
+- The original cause of the poorly rendered car.
+- What you changed.
+- Which screenshots you generated.
+- What was actually verified.
+- Any remaining limitations.
+
+Do not claim the result looks excellent without inspecting the rendered result.
+
+**Success means the page looks like a carefully art-directed, interactive automotive product presentation that also communicates a clear financial planning decision.**
+
+Do not add more features. Perfect this one screen first.
