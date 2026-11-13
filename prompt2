@@ -1,0 +1,121 @@
+Use the frontend-design skill to evolve the existing Kairos Goal Journey into a polished, customizable, client-specific financial planning experience.
+
+The 3D car now renders well. Preserve that achievement.
+
+The next iteration must solve three major problems: visual inconsistency with Kairos, identical milestones across clients, and the inability to create new milestone types.
+
+Inspect the existing implementation and make the changes directly.
+
+### 1. UNIFY THE VISUAL DESIGN
+
+The main Kairos application has a premium light interface with restrained Scotiabank-red branding. The Goal Journey currently becomes a disconnected black rectangle.
+
+Redesign it to inherit the existing application's colors, typography, spacing, navigation and visual language.
+
+Use a sophisticated warm-white or soft-grey environment with cinematic 3D lighting, subtle shadows and refined depth.
+
+Retain the beautiful car rendering. Adjust the environment lighting and materials for a lighter backdrop.
+
+Do not turn the entire page into generic white dashboard cards.
+
+The 3D model should remain the focal point.
+
+### 2. CREATE CLIENT-SPECIFIC FINANCIAL JOURNEYS
+
+Right now every client appears to have the same goals. This is unacceptable.
+
+Replace the shared hardcoded milestone array with a structured client-specific goal data model.
+
+Each goal must belong to a client and have:
+- Unique stable ID and client ID
+- Title and category
+- Target date and amount
+- Current amount allocated to the goal
+- Monthly contribution
+- Risk and liquidity context where available
+- 3D asset category
+- Calculated projection and status
+
+Create coherent, realistic synthetic goals for at least four existing clients.
+
+Their goals should be meaningfully different, not identical records with renamed clients.
+
+Switching clients must display only that client's milestones.
+
+Do not reset or overwrite existing user-created goals when switching clients.
+
+### 3. BUILD A FUNCTIONAL ADD MILESTONE EXPERIENCE
+
+Add a prominent but elegant "+ Add Goal" action to Goal Journey.
+
+Opening it should display a beautifully designed form where advisors can choose a goal category, enter a custom goal name, target date, target amount, current savings and monthly contributions.
+
+After creation:
+- Save the goal to the selected client.
+- Insert it chronologically into that client's journey.
+- Automatically select the new goal.
+- Transition smoothly into the goal's cinematic hero scene.
+- Display its calculated financial projection.
+- Allow editing and deletion with confirmation.
+- Persist changes across reloads using a client-keyed local prototype store.
+
+The user must not be restricted to three preset goals.
+
+### 4. DYNAMIC 3D GOAL VISUALS
+
+Create a reusable GoalScene component and a category-to-asset registry.
+
+Preserve the existing car model.
+
+Support vehicle, home, travel, education, retirement and generic/custom categories.
+
+Use appropriately licensed local GLB assets where available. Track attribution where required.
+
+For missing assets, use an intentional high-quality fallback. Never render an empty black canvas, broken model or unrelated object.
+
+Preload appropriate assets, manage loading and error states, and normalize model framing so every category looks good.
+
+Use subtle, meaningful transitions when changing goals.
+
+Do not attempt to generate arbitrary 3D geometry with an LLM at runtime.
+
+### 5. MAKE THE FINANCIAL ANALYSIS CLIENT-SPECIFIC
+
+Every goal must use its own inputs.
+
+Use deterministic projection calculations. Show funding progress, projected outcome, shortfall or surplus, and a clear assessment of whether the goal appears achievable under the assumptions.
+
+Allow advisors to explore contribution or target-date adjustments.
+
+Display relevant product categories and strategies for advisor review, with liquidity, horizon and risk considerations. Do not invent official Scotia product terms, rates or eligibility.
+
+Avoid falsely suggesting products are suitable without sufficient client information.
+
+Clearly label synthetic figures and projections.
+
+### 6. PRESERVE EXISTING BEHAVIOR
+
+Do not break the homepage animation, client rail, navigation, opportunity pages or current 3D car implementation.
+
+Keep one shared Goal Journey architecture driven by client and goal data, not copied implementations for each client.
+
+### 7. VISUAL AND FUNCTIONAL VERIFICATION
+
+Test at 1440×900.
+
+Verify that:
+- The light environment is visually consistent with Kairos.
+- The 3D car still looks excellent.
+- Different clients have different journeys.
+- New goals can be created and persist.
+- A new goal uses the correct 3D scene or fallback.
+- Goal selection and animation remain smooth.
+- Calculations respond to changed assumptions.
+- Dates and projected values remain consistent.
+- The application builds without errors.
+
+Capture screenshots if browser tools are available, inspect them, and refine the result.
+
+Do not stop after implementing the data structure.
+
+**The goal is to turn the existing 3D car demonstration into a beautiful, reusable, client-specific financial goal planning platform.**
