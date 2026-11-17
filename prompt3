@@ -1,0 +1,153 @@
+Use the frontend-design skill to restructure and redesign the Kairos application.
+
+We have received new direction from senior leadership. Kairos must become a complete wealth advisor workspace, combining client management, opportunity detection, scheduling, task management, portfolio monitoring and advisor intelligence.
+
+I am providing screenshots of:
+1. The current Kairos homepage.
+2. Vesta's Advisor Workspace dashboard, which represents the new functional direction.
+
+IMPORTANT: Use Vesta as a FUNCTIONAL reference, NOT as a visual design reference.
+
+The Vesta dashboard looks generic and underdeveloped. I want Kairos to deliver the same core business capabilities in a significantly more sophisticated, beautiful and intuitive interface.
+
+## PHASE 1: REORGANIZE EXISTING KAIROS
+
+Currently, the Dashboard tab opens the Kairos client opportunity grid.
+
+Move that entire experience to a new "Clients" destination in the sidebar.
+
+Requirements:
+- Dashboard now opens the new advisor workspace.
+- Clients opens the existing Kairos client grid.
+- Preserve all client cards, opportunity filters, search and existing functionality.
+- Preserve the animated transition where client cards transform into the vertical rail.
+- Preserve client details, opportunity pages, financial journeys and all existing client navigation.
+- Maintain valid URLs, browser history, back navigation and direct links.
+- Do not recreate or duplicate existing client components.
+
+Inspect the current routing and sidebar architecture before making changes.
+
+The existing Clients experience must work exactly as before, just under its new navigation destination.
+
+## PHASE 2: CREATE THE NEW ADVISOR DASHBOARD
+
+Replace the original Dashboard landing page with a premium advisor command center.
+
+Use Vesta's capabilities as inspiration:
+- Total clients and book overview.
+- Leads or potential client opportunities.
+- Upcoming meetings.
+- Outstanding tasks.
+- Calendar and scheduled events.
+- Portfolio snapshot and performance.
+- Client risk and retention indicators, where supported.
+- Existing Kairos investment opportunities.
+
+But do NOT reproduce Vesta's layout.
+
+Current Vesta problems:
+- Generic equal-sized KPI cards.
+- An oversized monthly calendar dominating the page.
+- Weak typography and hierarchy.
+- Too much unused space.
+- Disconnected financial metrics.
+- Generic risk gauges with limited explanation.
+- Little indication of what the advisor should prioritize.
+
+Redesign these into an exceptional, coherent advisor workspace.
+
+### Visual direction
+
+Premium institutional wealth management software with refined editorial design and the precision of a modern productivity application.
+
+Preserve Kairos's existing visual identity:
+- Light, neutral surfaces.
+- Scotiabank-inspired red navigation.
+- Clean, confident typography.
+- Restrained use of color.
+- Beautiful spacing and alignment.
+- Subtle motion and deliberate hover states.
+
+Avoid generic AI-generated SaaS design.
+
+No enormous cards, random gradients, meaningless donut charts, excessive badges or decorative visualizations.
+
+### Dashboard structure
+
+1. A refined welcome header containing date, advisor identity and a brief contextual summary.
+
+2. A compact portfolio and productivity overview using meaningful data rather than four oversized statistic cards.
+
+3. A prominent "Your Priorities" area showing important upcoming reviews, financial events, outstanding tasks and detected opportunities.
+
+4. A sophisticated schedule area combining a compact calendar with upcoming meetings and commitments. Allow users to access a full calendar view.
+
+5. A Portfolio Pulse section showing aggregate portfolio values, performance trends and relevant changes using clear, properly labeled visualizations.
+
+6. A Client Intelligence section highlighting relevant risk, opportunity and client-retention signals, with concise explanations and direct links to client records.
+
+7. A follow-up section that helps advisors organize and complete their work.
+
+Use composition and hierarchy to decide what appears above the fold. Do not give every section equal visual prominence.
+
+### Functional expectations
+
+Use Kairos's existing synthetic client dataset as the source of truth.
+
+Extend it with coherent synthetic meetings, tasks, calendar events and portfolio snapshots as required.
+
+Do not claim these records are live or connected to actual Scotiabank systems.
+
+Derive all dashboard values from the same underlying synthetic records. Do not hardcode KPI totals separately from displayed client data.
+
+Keep opportunities distinct from leads, tasks and meetings.
+
+All displayed statistics must have clear definitions. Avoid ambiguous aggregates such as "$4.8M at stake" without explaining the measure.
+
+Important interactions:
+- Clicking a client-related priority opens the correct client or opportunity.
+- Calendar navigation and date selection work.
+- Meetings and tasks are displayed consistently.
+- Task completion and review statuses are persistent within the demo.
+- Search and filters work where displayed.
+- Existing Kairos features remain accessible.
+
+No autonomous emails, calls, client communications, trades or account actions.
+
+### Design and implementation quality
+
+Design the dashboard primarily for a 1440×900 desktop viewport.
+
+The initial screen should feel visually cohesive, informative and easy to navigate.
+
+Use existing project libraries and components wherever appropriate.
+
+Do not introduce additional dependencies unless needed.
+
+Respect accessibility and reduced-motion preferences.
+
+### Execution process
+
+First inspect the actual codebase, routes and existing components.
+
+Then:
+
+1. Move the current Dashboard experience under Clients.
+2. Verify all existing client functionality still works.
+3. Implement the new Advisor Dashboard.
+4. Connect the dashboard to coherent synthetic data.
+5. Implement the key interactions.
+6. Refine typography, layout, spacing and visual hierarchy.
+7. Run build and lint checks.
+8. Inspect the rendered desktop interface if browser tooling is available.
+9. Fix visual and functional problems found during testing.
+
+Do not stop after producing a plan. Implement the changes.
+
+Do not modify the Goal Journey, 3D scenes or full opportunity pages unless necessary to preserve navigation.
+
+The end result should feel like one unified application.
+
+**The goal is for an advisor to open Kairos and immediately understand their schedule, portfolio, clients requiring attention, and outstanding work, without navigating through five disconnected systems.**
+
+Build a high-quality, usable advisor workspace, not a prettier copy of Vesta.
