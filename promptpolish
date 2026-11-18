@@ -1,0 +1,27 @@
+Use the frontend-design skill to refine the existing Kairos Advisor Dashboard.
+
+The dashboard currently includes a daily meeting schedule, portfolio snapshot, client insights, follow-ups and client requests.
+
+All these features should remain.
+
+I want to improve the visual quality and advisor usability without rebuilding the page.
+
+Priorities:
+
+1. Improve the information hierarchy of the greeting, schedule and productivity metrics.
+2. Refine the meeting timeline to make upcoming meetings and client context easier to understand.
+3. Improve the Portfolio Snapshot layout and readability while preserving its real calculations.
+4. Redesign the Follow-ups and Client Requests sections with consistent, compact rows, clear priorities and less unnecessary whitespace.
+5. Improve section alignment, spacing, typography and visual balance.
+6. Ensure client names and opportunities navigate directly to the new unified Client Workspace.
+7. Use one consistent synthetic as-of date for all meetings, portfolio valuations and overdue calculations.
+
+Preserve the existing light Kairos aesthetic and red sidebar.
+
+Do not introduce generic KPI cards, unnecessary gradients, meaningless charts or excessive decorative elements.
+
+Do not modify the Client Workspace or its animations during this pass.
+
+Render at 1440×900, inspect the result, fix visual problems, and verify the existing dashboard interactions.
+
+The goal is a beautiful, clean, useful advisor command center appropriate for senior leadership demonstration.
