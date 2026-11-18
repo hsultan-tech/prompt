@@ -1,1 +1,174 @@
 
+Use the frontend-design skill to consolidate Kairos's Client Preview and Full Opportunity experiences into one seamless Client Workspace.
+
+This is our highest-priority UX change. Do not redesign the entire app or rebuild existing features.
+
+## Context
+
+Kairos is an internal wealth advisor intelligence prototype with synthetic client and portfolio data.
+
+The current client flow is unnecessarily fragmented:
+
+Clients grid → animated client preview → Review Opportunity → separate full opportunity page.
+
+The client preview contains portfolio analysis, financial information, timeline and Next Best Action.
+
+The full opportunity page separately contains advisor recommendations, notes, portfolio analysis, product comparisons, portfolio simulation and meeting preparation.
+
+I want these two experiences COMBINED into one continuous Client Workspace.
+
+## 1. Inspect before editing
+
+Identify:
+- Existing Clients page and animated client cards.
+- Client rail and client preview components.
+- Opportunity detail route and components.
+- Portfolio visualization components.
+- Product recommendation and comparison functionality.
+- Portfolio simulator and scenario state.
+- Advisor notes and preparation functionality.
+- Existing routing, data models and animation architecture.
+
+Briefly identify the components that can be reused.
+
+DO NOT create replacements for functionality that already exists.
+
+## 2. Build a unified Client Workspace
+
+When an advisor selects a client from the Clients grid:
+
+- Preserve the existing shared-layout animation.
+- Move the cards into the existing left-side client rail.
+- Reveal the selected client's full workspace on the right.
+- Keep the client rail present while reviewing opportunities and simulating portfolios.
+- Make changing clients smooth without returning to the grid.
+
+The workspace should contain:
+
+A. Client header
+- Client name, relevant profile information, portfolio summary and active opportunity status.
+
+B. Portfolio overview
+- Reuse the existing portfolio visualizations, holdings information and financial metrics.
+- Retain access to the Financial Journey feature.
+
+C. Opportunity analysis
+- Existing detected opportunity and its explanation.
+- Evidence, relevant figures and Next Best Action.
+- Multiple opportunities supported per client.
+
+D. Advisor workspace
+- Existing advisor assessment functionality.
+- Notes and follow-up information.
+- Existing preparation-for-conversation tools.
+
+E. Options to Review
+- Reuse all existing Scotia product comparison cards.
+- Retain risk characteristics, product details and comparison functionality.
+- Do not generate new product recommendations or invent new financial data.
+
+F. Portfolio Simulator
+- Reuse the EXISTING simulator, calculations and selections.
+- Allow the advisor to move from comparing a product to simulating its portfolio implications without navigating to another application page.
+
+## 3. Design the experience thoughtfully
+
+Do NOT simply paste the entire opportunity page beneath the client preview and create one enormous wall of content.
+
+Build a coherent layout with a persistent client header and refined in-workspace navigation.
+
+Suggested sections:
+- Overview
+- Opportunity
+- Portfolio
+- Simulator
+- Notes
+
+These should behave as in-page sections or stateful workspace panels, not disconnected full-page routes.
+
+Provide a clear hierarchy and contextual actions.
+
+The advisor should be able to:
+- Understand the client immediately.
+- Investigate the opportunity.
+- Compare suitable options for further assessment.
+- Open the simulator.
+- Return to the original analysis.
+- Record notes.
+
+All without losing the selected client or their current work.
+
+Keep Scotiabank-inspired red accents, premium light surfaces, excellent typography and intentional spacing.
+
+Avoid excessive cards, repeated summaries, unnecessary whitespace and generic dashboard UI.
+
+## 4. Remove the redundant navigation step
+
+The existing "Review Opportunity" button should no longer open a separate full-screen page.
+
+Replace its behaviour with navigation to the opportunity analysis INSIDE the workspace.
+
+Use smooth scrolling, section navigation or coordinated content transitions.
+
+Do not discard the opportunity components.
+
+Existing opportunity URLs must remain valid. Direct links should open the unified Client Workspace with the correct client and opportunity selected.
+
+Preserve browser back/forward navigation and deep linking.
+
+## 5. Technical requirements
+
+Use one canonical client and opportunity data source.
+
+Do not duplicate portfolio calculations, recommendation state or simulator logic.
+
+Maintain existing client-specific information.
+
+Keep relevant state when switching between workspace sections.
+
+Prevent unnecessary component unmounts that reset simulator selections, advisor notes or opportunity context.
+
+Preserve the homepage-to-client animation and reverse animation.
+
+Do not modify the Goal Journey or its 3D scenes.
+
+Do not add new backend integrations.
+
+## 6. Implementation approach
+
+Complete this in controlled stages:
+
+1. Audit the existing components and routes.
+2. Introduce the unified workspace composition using existing components.
+3. Integrate opportunity detail content.
+4. Integrate product comparisons and simulator.
+5. Replace redundant navigation with in-workspace navigation.
+6. Preserve legacy deep links.
+7. Polish spacing, transitions and responsive behaviour.
+8. Test all existing functionality.
+
+Do not replace working financial calculations.
+
+## 7. Acceptance criteria
+
+Test the following complete flow:
+
+1. Open Clients.
+2. Select Hannah Morgan.
+3. Watch the existing cards transform into the client rail.
+4. Review Hannah's portfolio and concentration opportunity.
+5. Open the detailed opportunity section without a page transition.
+6. Compare the existing product options.
+7. Open the portfolio simulator within the workspace.
+8. Return to the opportunity analysis without losing selections.
+9. Switch to another client and verify their own information loads.
+10. Return to the Clients grid with the reverse animation.
+11. Open an existing opportunity URL directly and verify it resolves to the correct client workspace.
+
+Run build and lint checks.
+
+Inspect the rendered app at 1440×900 if browser tools are available.
+
+**The result must feel like a single sophisticated advisor workstation, not two existing pages glued together.**
+
+Implement the code changes, not just a proposal.
