@@ -1,27 +1,110 @@
-Use the frontend-design skill to refine the existing Kairos Advisor Dashboard.
+Use the frontend-design skill to fix the Kairos Client Workspace architecture, client navigation and performance.
 
-The dashboard currently includes a daily meeting schedule, portfolio snapshot, client insights, follow-ups and client requests.
+The existing Client Workspace is functional but has three major usability problems. I want actual implementation changes, not another high-level design proposal.
 
-All these features should remain.
+## Problem 1: Workspace tabs are not real tabs
 
-I want to improve the visual quality and advisor usability without rebuilding the page.
+The current Overview, Opportunity, Options, Simulator, Portfolio and Notes tabs navigate vertically through sections of one long page.
 
-Priorities:
+This is unacceptable.
 
-1. Improve the information hierarchy of the greeting, schedule and productivity metrics.
-2. Refine the meeting timeline to make upcoming meetings and client context easier to understand.
-3. Improve the Portfolio Snapshot layout and readability while preserving its real calculations.
-4. Redesign the Follow-ups and Client Requests sections with consistent, compact rows, clear priorities and less unnecessary whitespace.
-5. Improve section alignment, spacing, typography and visual balance.
-6. Ensure client names and opportunities navigate directly to the new unified Client Workspace.
-7. Use one consistent synthetic as-of date for all meetings, portfolio valuations and overdue calculations.
+Replace the current anchor-scroll navigation with real, independently displayed workspace panels.
 
-Preserve the existing light Kairos aesthetic and red sidebar.
+Requirements:
+- A persistent client header and tab bar.
+- Only the active workspace is visible.
+- Tab selection changes the main content area, not the page's scroll position.
+- Each tab uses the existing corresponding components and functionality.
+- Switching tabs should feel like switching workspaces in a professional desktop application.
+- Provide subtle transitions, approximately 150–220ms.
+- Maintain scroll position independently per workspace when practical.
+- Preserve simulator inputs, selected products and advisor notes between tabs.
+- Do not recreate the underlying components.
+- Deep links must open the correct client and active workspace.
+- Existing legacy URLs containing fragments such as #options must remain compatible.
+- Browser back and forward navigation must work.
 
-Do not introduce generic KPI cards, unnecessary gradients, meaningless charts or excessive decorative elements.
+Do not render all six heavy views unnecessarily. Preserve important state in a shared client-specific state layer rather than relying entirely on mounted component state.
 
-Do not modify the Client Workspace or its animations during this pass.
+## Problem 2: Client rail cannot collapse or filter properly
 
-Render at 1440×900, inspect the result, fix visual problems, and verify the existing dashboard interactions.
+The left client rail takes too much room and is difficult to navigate.
 
-The goal is a beautiful, clean, useful advisor command center appropriate for senior leadership demonstration.
+Implement:
+- An explicit collapse/expand button.
+- Expanded width approximately 240px.
+- Collapsed width approximately 56–64px.
+- Search clients by name.
+- Filters for opportunity type and review status, using existing data.
+- Clear active-filter indicators and reset filters.
+- Smooth client switching.
+- Selected client visible in either mode.
+- In collapsed mode, show avatars or initials and accessible tooltips.
+- Animate the main workspace expanding into reclaimed space.
+- Preserve sidebar state across tab changes.
+- Never reset the selected client or simulator just because the rail collapses.
+- Preserve the existing homepage client-card shared-layout animation.
+
+Place search and filters in the rail itself, not on another page.
+
+## Problem 3: Client workspace is too slow
+
+Before optimizing, profile the actual behaviour.
+
+Inspect:
+- Network requests and asset sizes.
+- React re-rendering and mount behaviour.
+- Heavy 3D scene imports.
+- Portfolio simulator calculations.
+- Client state updates.
+- Animation-related layout work.
+- Duplicate or unnecessary data transformation.
+- Development-mode overhead versus production performance.
+
+Record a baseline for initial client opening and tab switching.
+
+Implement targeted optimizations such as:
+- Route-level/component-level code splitting.
+- Lazy loading the simulator and 3D journey.
+- Prefetching likely next workspaces when useful.
+- Memoization only where profiling supports it.
+- Preserving heavy component state outside the rendering lifecycle.
+- Avoiding unnecessary WebGL mounting when the 3D journey is not active.
+
+Do not install optimization libraries without justification.
+
+## Preserve existing features
+
+Keep all existing:
+- Financial calculations.
+- Full opportunity analysis.
+- Options and Scotia product comparisons.
+- Portfolio simulation.
+- Financial Journey and 3D models.
+- Client-specific synthetic data.
+- Dashboard navigation.
+- Existing animations.
+
+Do not redesign those features in this task.
+
+## Acceptance tests
+
+1. Open Clients and select Owen Patel.
+2. Verify the existing card-to-rail animation works.
+3. Collapse and expand the client rail.
+4. Search for Maya Chen.
+5. Filter clients by opportunity category.
+6. Switch between Overview, Opportunity, Options, Simulator, Portfolio and Notes.
+7. Verify tabs replace content without page scrolling.
+8. Enter values in Simulator, switch tabs and return without losing the values.
+9. Refresh a deep link and verify the correct panel opens.
+10. Verify browser Back and Forward.
+11. Test client switching and confirm client-specific data does not leak into another client's workspace.
+12. Measure client opening and tab-switch performance before and after changes.
+13. Run build and lint checks.
+
+If browser tooling is available, capture the expanded and collapsed client layouts and at least three active workspace states.
+
+**Goal: Make the Client Workspace feel like a fast, cohesive desktop financial application, not a long webpage with navigation anchors.**
+
+Implement and verify the changes directly.
