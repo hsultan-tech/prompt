@@ -1,20 +1,31 @@
-Implement my third assigned Kairos task: Advisor Desk status views.
+Implement my second assigned Kairos task: the Client Workspace Timeline tab.
 
-Add Outstanding, Deferred and Dismissed alongside the existing All and Addressed views.
+The existing application already has:
+- A Client Workspace with multiple tabs.
+- A Financial Journey experience.
+- Synthetic client-specific goals and milestones.
+- Goal projection calculations and statuses.
+
+I need a dedicated Timeline tab directly inside the Client Workspace.
 
 Requirements:
-- Each view filters the relevant existing desk records.
-- Each view displays an accurate count.
-- The selected view persists across browser reloads.
-- Derive statuses and counts from the existing data model.
-- Preserve existing client cards, navigation and animations.
-- Reuse the existing design system.
-- Do not fabricate client statuses.
+1. Inspect the existing client-specific financial journey data.
+2. Add Timeline to the current workspace tabs if it doesn't already exist.
+3. Display the selected client's dated financial events and future financial goals.
+4. Display On Track or At Risk statuses where supported by the existing projection calculations.
+5. Sort dated milestones chronologically.
+6. Show clear milestone titles, dates, descriptions and goal statuses.
+7. Make the timeline readable and visually consistent with the Kairos light theme.
+8. Allow users to select a milestone and explore its existing detailed Financial Journey.
+9. Switching clients must display the correct client's events.
+10. Preserve the current 3D experience, navigation, workspace tabs and animations.
 
-IMPORTANT: Hadi owns the Dismiss Client button, and Ethan owns the Email Client status integration. Inspect whether their work has landed before integrating it.
+Reuse existing components and data. Do not build a second, unrelated timeline system.
 
-Do not overwrite their changes.
+Hadi is working on additional event data. Use existing synthetic examples for now if that data is not yet integrated. Do not modify his work.
 
-If their functionality is unavailable, implement the filter infrastructure using the existing supported statuses and clearly report what remains blocked.
+Implement and test the actual functionality.
 
-Implement, test and run build checks.
+Verify that an advisor can open a client, click Timeline, and immediately see dated events, goals and available risk statuses without opening a separate full-screen view.
+
+Run build and lint checks, and report any missing data dependencies.
