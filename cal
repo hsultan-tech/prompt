@@ -1,0 +1,91 @@
+Use the frontend-design skill to substantially improve the Kairos Advisor Dashboard.
+
+This is a targeted dashboard UX and visual refinement task. Do not modify the Client Workspace architecture, simulator or Financial Journey.
+
+I am providing screenshots of the current dashboard and Vesta's portfolio visualization.
+
+Use Vesta as a functional reference for the types of charts, not as a design to copy.
+
+## 1. Completely improve the calendar
+
+The current schedule is a cramped horizontal 8 AM–5 PM timeline with overlapping meeting titles and unreadable labels.
+
+I want zero overlapping text or meeting elements.
+
+Redesign the dashboard's default schedule into a premium, easily scannable calendar/agenda experience.
+
+Use:
+- A compact weekly date selector.
+- A clear chronological meeting agenda.
+- Prominent meeting times.
+- Readable client names and meeting purposes.
+- A distinct next-meeting highlight.
+- Clear internal versus client meeting treatment.
+- Day/Week view switching.
+- Contextual meeting details on selection.
+
+A full week view can use a calendar grid, but must properly handle overlapping appointments without text collision.
+
+Do not squeeze long meeting titles into narrow time columns.
+
+Preserve working meeting data, navigation and related client links.
+
+## 2. Redesign Portfolio Snapshot
+
+The current valuation bars and asset-mix comparison are too static and visually uninspiring.
+
+Create a visually refined financial analytics section inspired by Vesta's portfolio performance line graph and asset allocation visualization.
+
+I want:
+
+- Strong total portfolio value typography.
+- A beautiful, interactive portfolio value line/area chart.
+- Time range controls.
+- Refined hover tooltips.
+- Smooth, restrained chart transitions.
+- Asset allocation donut or ring.
+- Clear allocation percentages and legend.
+- Relevant context such as valuation date and net asset flows, only where supported.
+- Carefully aligned layout, excellent spacing and strong typography.
+
+Use Kairos's existing light theme, neutral colors and restrained Scotiabank red.
+
+Avoid generic chart cards, excessive gradients, glassmorphism, meaningless effects and random icons.
+
+All values must derive from coherent synthetic portfolio snapshots.
+
+Do not label total portfolio-value growth as investment performance unless returns are calculated with cash flows accounted for.
+
+## 3. Improve overall dashboard hierarchy
+
+Ensure the calendar and Portfolio Snapshot work harmoniously.
+
+Keep Client Insights, Follow-ups and Client Requests.
+
+Reduce visual clutter and unnecessary whitespace.
+
+Preserve every existing interaction and navigation route.
+
+Make the dashboard look like one intentionally designed advisor command center.
+
+## 4. Visual and functional verification
+
+Render at 1440×900 and a narrower desktop viewport.
+
+Verify:
+- No calendar text overlap.
+- Every meeting remains discoverable.
+- Calendar day/week switching works.
+- Line chart tooltips and time-range controls work.
+- Asset allocation totals reconcile.
+- Charts and metrics use the same synthetic data source.
+- Client and opportunity links still navigate correctly.
+- No new performance regressions.
+
+Capture screenshots, inspect the actual render, and refine spacing and visual hierarchy.
+
+Run build and lint checks.
+
+Do not stop at a first-pass render if it still resembles a generic AI-generated dashboard.
+
+**The finished dashboard should be significantly clearer than the current Kairos layout and visually more sophisticated than the provided Vesta reference.**
