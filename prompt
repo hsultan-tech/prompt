@@ -1,0 +1,20 @@
+Implement my first assigned Kairos task.
+
+TASK: Update the client cards on the Advisor Desk.
+
+Every client card must display:
+- "With Scotia $X of $Y total"
+- For excess-cash opportunities, "$X cash of $Y total", not just a percentage.
+
+IMPORTANT:
+- Inspect the existing client data models and card components first.
+- The required financial numbers should already be loaded in the application.
+- Use existing values rather than inventing data.
+- Distinguish total client assets from assets held with Scotia.
+- Preserve all card styling, animations, filtering and navigation.
+- Do not modify unrelated features.
+- If a required value is missing, identify the missing field instead of making up a number.
+
+Implement this directly, run build checks, and tell me exactly what changed.
+
+Do not stop at a plan.
