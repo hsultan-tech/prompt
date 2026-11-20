@@ -1,0 +1,133 @@
+Use the frontend-design skill to refine the existing Kairos Client Workspace.
+
+The application is functional, but several layout and UX decisions are frustrating and visually unpolished. I have screenshots of Maya Chen's Overview and Timeline tabs.
+
+**This is a targeted UX refinement, not a redesign of the application. Implement the fixes directly.**
+
+### TASK 1: Remove the duplicated timeline from Overview
+
+We now have a dedicated Timeline tab, but the Overview still displays a vertical client timeline on the right.
+
+This is unnecessary duplication.
+
+- Remove the vertical timeline panel from Overview.
+- Reclaim the space for the portfolio analysis and Next Best Action.
+- Rebalance the layout so the portfolio chart can use more horizontal space.
+- Retain an understated "View Timeline" action if useful.
+- Keep the dedicated Timeline tab and expanded Financial Journey fully functional.
+
+Do not delete shared timeline components or data.
+
+### TASK 2: Redesign the Timeline tab header and improve readability
+
+The existing header with "Behind", "Today" and "Ahead" counts is unattractive, confusing and takes too much attention.
+
+Remove that presentation.
+
+Create a sophisticated Financial Timeline header with:
+- Clear title and brief supporting context.
+- Compact summary of meaningful upcoming milestones and goals needing review.
+- Relevant actions aligned consistently.
+
+Improve the timeline below it:
+- Maintain chronological order.
+- Use clear year and date hierarchy.
+- Make milestone titles easy to scan.
+- Place goal funding percentages and progress bars directly beside their corresponding milestones.
+- Distinguish financial events, advisor reviews and client goals.
+- Display On Track and At Risk statuses clearly.
+- Group undated milestones in a separate Unscheduled section.
+- Reduce unnecessary whitespace and repeated labels.
+- Avoid overlap or horizontal crowding.
+
+Keep all existing client-specific data, goal calculations, milestone interactions and navigation.
+
+Do not replace the timeline with another complex visualization.
+
+### TASK 3: Fix client header and tab scrolling
+
+The large client header and persistent tabs currently interfere with scrolling through workspace content.
+
+Redesign the client workspace layout so it behaves like a professional desktop application.
+
+Requirements:
+
+- Keep the selected client identity and workspace tabs accessible.
+- Use a normal expanded client header at the top.
+- On scroll, transition to a compact client identity header where appropriate.
+- The tab bar must remain accessible without covering content.
+- Only the active workspace content should scroll in its own container.
+- Avoid multiple overlapping sticky elements.
+- Ensure correct scroll boundaries, top offsets and z-index layering.
+- Preserve each workspace's scroll position when practical.
+- Ensure no content is hidden under the tabs.
+- Keep the header compact enough to leave meaningful vertical space for analysis.
+
+Inspect the current layout structure before implementing this. Prefer a stable flex/grid application shell with a dedicated content scroll container rather than arbitrary sticky offsets.
+
+Tabs must remain real workspace switches, not anchor links into one long page.
+
+Test Overview, Timeline, Opportunity, Options, Simulator, Portfolio and Notes individually.
+
+### TASK 4: Redesign the collapsed client navigation rail
+
+The existing collapsed rail displays ugly repeated vertical line markers to the left of initials such as MJ, SB and NA.
+
+Remove these repetitive marks.
+
+Create a refined compact navigation:
+- Clean, consistently sized client initials/avatars.
+- Clear active client selection using a subtle background and restrained accent.
+- No repeated left borders or vertical pipe symbols.
+- Correct centering, spacing and alignment.
+- Accessible names/tooltips for collapsed client items.
+- Clean hover, focus and selected states.
+- Preserve client switching, search/filter functionality and the collapse/expand control.
+
+Do not introduce unnecessary badges or visual noise.
+
+### DESIGN DIRECTION
+
+Keep the existing Kairos light theme, clean typography and restrained Scotiabank-red branding.
+
+Aim for a polished enterprise financial workstation with the precision of Linear or a modern desktop application.
+
+Prioritize spacing, hierarchy, legibility and functional interaction.
+
+Do not add decorative charts, gradients, shadows or unrelated functionality.
+
+### IMPORTANT CONSTRAINTS
+
+- Task 3 from our project spreadsheet, the status-view feature, is out of scope.
+- Do not change the Advisor Dashboard.
+- Do not modify synthetic client data.
+- Do not change financial calculations.
+- Preserve the existing 3D Financial Journey.
+- Preserve client switching, animations, routing and deep links.
+- Do not rewrite unrelated components.
+
+### IMPLEMENTATION AND VERIFICATION
+
+First inspect the existing workspace layout, timeline components, rail styling and scroll behavior.
+
+Then implement all four improvements.
+
+Verify at 1440×900 and 1280×800:
+
+1. Overview no longer duplicates the Timeline tab.
+2. Portfolio content makes good use of the reclaimed space.
+3. Timeline header is clean and readable.
+4. Dated and undated milestones display logically.
+5. Header and tabs remain accessible during scrolling without overlapping content.
+6. Long workspace content is fully scrollable.
+7. The collapsed client rail has no repeated vertical markers.
+8. Switching clients and workspaces continues to work.
+9. Existing Financial Journey and simulator functionality are unaffected.
+
+Run build/lint checks.
+
+If browser tooling is available, capture before/after screenshots of the Overview, Timeline and collapsed rail, inspect them, and refine the visual result.
+
+Do not stop at providing a plan. Implement the changes.
+
+**The goal is a cleaner, faster-feeling, more cohesive Client Workspace without rebuilding features that already work.**
