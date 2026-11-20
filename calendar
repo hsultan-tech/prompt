@@ -1,0 +1,185 @@
+Use the frontend-design skill to redesign the Kairos Dashboard calendar section and the full Calendar workspace.
+
+This is a leadership-requested UI and workflow change. Implement the changes directly in the existing React application.
+
+I have two screenshots:
+1. The Dashboard showing Calendar and Follow-ups side by side.
+2. The full Calendar page showing a small October month picker on the left, a daily schedule and a meeting inspector.
+
+The main goal is to make the calendar the centerpiece of the scheduling experience, reduce text-heavy content on the Dashboard, and integrate Follow-ups into the full Calendar workspace.
+
+## TASK 1: Redesign the Dashboard calendar section
+
+The Dashboard currently gives Calendar and Follow-ups equal space in two adjacent cards.
+
+Change this completely.
+
+- Remove the standalone Follow-ups card from the Dashboard.
+- Make Calendar occupy the full available width of that dashboard section.
+- Redesign the calendar as a clean, premium advisor schedule.
+- Make meeting times, client names and purposes easy to scan.
+- Use deliberate spacing and clear typography.
+- Highlight the next relevant meeting without overwhelming the other events.
+- Add a clear "Open Calendar" action leading to the full Calendar workspace.
+- Reduce repeated paragraphs and unnecessary status labels.
+- Keep existing meeting data and related client navigation intact.
+
+The Calendar section should feel like the primary scheduling feature of the Dashboard, not another generic card.
+
+Do not modify the rest of the Dashboard unless necessary for layout consistency.
+
+## TASK 2: Move Follow-ups into the full Calendar workspace
+
+Currently, the full Calendar has a small October 2026 monthly picker on the left.
+
+Redesign that left area to become a dedicated Follow-ups sidebar.
+
+Layout:
+- Left: approximately 260–300px for Follow-ups.
+- Center/right: flexible main calendar workspace.
+- Calendar takes most of the screen width.
+
+The sidebar should display:
+- Follow-ups heading and outstanding count.
+- Due Now, This Week, Later and Done filters.
+- Compact, readable tasks.
+- Task checkbox or completion control.
+- Due dates and relevant client names.
+- An Add Follow-up action.
+
+Reuse the existing Follow-ups data, logic, persistence and interactions. Do not create a separate disconnected task system.
+
+Make the left sidebar independently scrollable when necessary.
+
+The original mini-month date picker should no longer permanently consume the sidebar. Move date navigation into the main calendar toolbar, with an optional compact date-picker popover.
+
+## TASK 3: Add a fully functional Month view
+
+The full Calendar currently has Day and Week controls.
+
+Add Month as a third option.
+
+Use a proper segmented control:
+
+Day | Week | Month
+
+Day view:
+- Chronological meeting schedule.
+- Readable event titles and times.
+- Selected meeting details when needed.
+- No overlapping event elements.
+
+Week view:
+- Seven-day calendar.
+- Clearly labeled days and times.
+- Meetings positioned in the correct day/time.
+- Correct handling of concurrent and overlapping meetings.
+- Events remain accessible even in crowded time slots.
+
+Month view:
+- Full seven-column monthly calendar.
+- Correct weekday alignment.
+- Five or six rows as required by the selected month.
+- Correct previous/next month navigation.
+- Meeting indicators or concise event labels.
+- Overflow handling such as "+3 more" for crowded dates.
+- Clicking a day opens its Day view.
+- Clicking an event opens its details.
+- Clear visual distinction between the selected date and actual today.
+
+All three views must use the same calendar events and date-selection state.
+
+Switching views must preserve the selected date and not unexpectedly reset the calendar.
+
+The Follow-ups sidebar must remain present in all three views.
+
+## TASK 4: Improve the full Calendar layout
+
+The current full Calendar feels unfinished because the main schedule is compressed into a card near the top with substantial unused space below.
+
+Redesign it as a full-height advisor scheduling workspace.
+
+Requirements:
+- Refined page heading.
+- Clear month/date navigation.
+- Day, Week and Month controls in the top-right.
+- Follow-ups on the left.
+- Main calendar expands to use available space.
+- Meeting details open in a contextual panel, popover or drawer without permanently squeezing the calendar.
+- Strong typography, clean alignment and sufficient space between meetings.
+- Responsive behaviour at smaller desktop widths.
+- No overlapping text, cropped titles or confusing calendar labels.
+
+Preserve the existing Kairos light visual identity and restrained Scotiabank-red accents.
+
+Avoid generic SaaS calendar components, excessive rounded cards, random gradients and unnecessary status badges.
+
+## TASK 5: Fix date handling
+
+Inspect the current synthetic date system.
+
+The screenshots show October 1, 2026 while the actual system date may be different.
+
+Use one clearly defined date source for the demo.
+
+Do not hardcode "Today" to October 1 unless the application explicitly operates in a simulated demo-date mode.
+
+Ensure:
+- Month headings match selected dates.
+- Day and week navigation work.
+- Event times are consistent.
+- Follow-up due statuses derive from the correct as-of date.
+- Month grid weekday positions are correct.
+- Dates do not change unexpectedly when switching views.
+
+Keep appointment data and follow-up due dates separate, even when they relate to the same client.
+
+## PRESERVE EXISTING FUNCTIONALITY
+
+Do not modify:
+- Clients page.
+- Client Workspace tabs.
+- Opportunity analysis.
+- Portfolio simulator.
+- Financial Journey and 3D scenes.
+- Portfolio Snapshot.
+- Client-card animations.
+
+Keep all existing calendar meetings, follow-ups and client links.
+
+Do not add autonomous emails, calls or client communication.
+
+## IMPLEMENTATION PLAN
+
+1. Inspect existing Dashboard Calendar and Follow-ups components.
+2. Inspect the full Calendar and its state management.
+3. Reuse existing data models and components wherever possible.
+4. Implement the full-width Dashboard calendar.
+5. Move Follow-ups into the full Calendar sidebar.
+6. Implement Month view and improve Day/Week layouts.
+7. Fix scrolling, responsive layout and date calculations.
+8. Run lint/build checks and fix issues.
+9. Verify the actual rendered UI.
+
+## ACCEPTANCE TESTS
+
+At 1440×900 and 1280×800:
+
+- Dashboard Calendar occupies the full scheduling section width.
+- Separate Dashboard Follow-ups card is gone.
+- Open Calendar navigates correctly.
+- Full Calendar shows Follow-ups on the left.
+- Day, Week and Month all function.
+- Month navigation correctly handles months needing six calendar rows.
+- Clicking a date changes the selected day correctly.
+- Overlapping meetings remain accessible.
+- Follow-up completion updates the existing saved state.
+- The calendar and follow-ups do not show contradictory dates.
+- No text overlaps or clips.
+- Existing client navigation still works.
+
+If screenshot tooling is available, capture and inspect Dashboard, Day, Week and Month views, then refine the layout based on the actual render.
+
+Do not stop after creating components that technically build.
+
+**The finished experience should feel like one premium, integrated advisor calendar, with a clean Dashboard preview and a powerful full scheduling workspace.**
